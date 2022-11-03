@@ -1,0 +1,17 @@
+name: robot framework
+description: read yaml file
+listing:
+  - one
+  - two
+  - three
+  - four
+  - five
+dictionary:
+  a: one
+  b: two
+  c: three
+robot:
+  selenium: Click Button
+  browserlib: Click
+  builtin:
+    create: robot framework
