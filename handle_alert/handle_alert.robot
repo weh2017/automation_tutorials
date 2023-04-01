@@ -10,8 +10,8 @@ ${URL_ALERTS}    https://demoqa.com/alerts
 ${CLICK_ONE_BTN}    //button[@id="alertButton"]
 ${CONFIRM_BTN}      //button[@id="confirmButton"]
 ${RESULT_CONFIRM}    //span[@id="confirmResult"]
-
-
+${PROMPT_BTN}        id:promtButton
+${PROMPT_RESULT}     id:promptResult
 *** Keywords ***
 
 Alert Me One
@@ -21,6 +21,9 @@ Alert Me One
 Alert Me Confirm
     Click Element    ${CONFIRM_BTN}
 
+Alert Prompt
+    Wait Until Element Is Visible    ${PROMPT_BTN}
+    Click Element    ${PROMPT_BTN}
 *** Test Cases ***
 TEST01_HANDLING ALERTS
     [Tags]    test1
@@ -68,3 +71,13 @@ TEST04_ALERT SHOULD BE PRESENT WITH CONFIRMATION MESSAGE
         ...    Log To Console    USER SELECTED : CANCEL
     END
     Alert Should Not Be Present
+
+TEST05_INPUT MESSAGE INTO ALERT
+    [Tags]    test5
+    Maximize Browser Window
+    ${text}    Set Variable    Input Text into alert
+    Alert Prompt
+    Input Text Into Alert    ${text}
+    Wait Until Page Contains    ${text}
+    Sleep  5
+    
