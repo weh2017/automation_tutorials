@@ -3,11 +3,8 @@ Documentation    API automation Robot Framework
 Library    RequestsLibrary
 Library    JSONLibrary
 Library    String
+Resource    variables.robot
 
-
-*** Variables ***
-${BASE_URL}    https://restful-booker.herokuapp.com
-${IDS_ENDPOINT}    /booking
 
 
 *** Test Cases ***
@@ -22,7 +19,7 @@ Get All IDs
 Get Book ID
     [Tags]    tc2
     Create Session    Session    ${BASE_URL}    disable_warnings=1
-    ${response}    GET On Session    Session    ${IDS_ENDPOINT}/400
+    ${response}    GET On Session    Session    ${IDS_ENDPOINT}/1547
     Status Should Be    200
 
     Log To Console  ${response.content}
@@ -44,4 +41,4 @@ Get Book ID without Session
     Log  ${response.json()}
     Log  ${response.json()}[bookingdates][checkin]
 
-    Should Be Equal As Strings    Smith    ${response.json()}[bookingdates][checking]
+    Should Be Equal As Strings    2018-01-01    ${response.json()}[bookingdates][checkin]
